@@ -10,6 +10,8 @@ from tensorflow.keras.layers import concatenate
 
 # Compare the two inputs
 def comparator(learner, instructor):
+    if len(learner) != len(instructor):
+        raise AssertionError(f"The number of layers in the proposed model does not agree with the expected model: expected {len(instructor)}, got {len(learner)}.") 
     for a, b in zip(learner, instructor):
         if tuple(a) != tuple(b):
             print(colored("Test failed", attrs=['bold']),
